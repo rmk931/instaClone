@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "192195137752",
+    "firebase_url": "https://insone-3e77c.firebaseio.com",
+    "project_id": "insone-3e77c",
+    "storage_bucket": "insone-3e77c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192195137752:android:e8dd3b567b79efbe",
+        "android_client_info": {
+          "package_name": "com.rmk.insone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192195137752-vfk2olcvf30gd7dpk4hp9jlrp0dibvd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVCRWBwYI_DsST0-a9roEUcbUdHLkmf1I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
