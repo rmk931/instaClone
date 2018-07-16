@@ -11,16 +11,16 @@ import reducer from './src/reducer';
 
 initialState = {};
 
-/*const store = createStore(
+const store = createStore(
     reducer,
     initialState,
     //applyMiddleware(sagaMiddleware)
-);*/
+);
 
 const InstaClone = () => (
-    //<Provider store={store}>
+    <Provider store={store}>
         <App />
-    //</Provider>
+    </Provider>
 )
 AppRegistry.registerComponent('insone', () => InstaClone);
 

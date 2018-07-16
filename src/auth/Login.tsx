@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect, DispatchProp } from 'react-redux';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 
 import { Navigation } from './types';
@@ -13,7 +14,7 @@ interface State {
     readonly errorMessage: string,
 }
 
-export default class Login extends React.Component<Props, State> {
+class Login extends React.Component<Props, State> {
 
     state: State = {
         email: '',
@@ -70,3 +71,15 @@ const styles = StyleSheet.create({
         marginTop: 8
     }
 })
+
+const mapStateToProps = (state: State) => ({
+
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    handleClick: () => dispatch(incrementCounterAction())
+});
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
