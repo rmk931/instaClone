@@ -1,37 +1,40 @@
 import React from 'react'
-import { connect, DispatchProp } from 'react-redux';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { StyleSheet, Text, TextInput, View, Button, AppState } from 'react-native'
 
+import * as actions from './actions';
 import { Navigation } from './types';
+import { AppReducerState } from '../reducer';
 
 interface Props {
-    navigation: Navigation
+    navigation: Navigation;
+    error: string;
+    loginRequest: (email: string, password: string, redirectTo: Function) => any;
 }
 
 interface State {
-    readonly email: string,
-    readonly password: string,
-    readonly errorMessage: string,
+    readonly email: string;
+    readonly password: string;
 }
 
 class Login extends React.Component<Props, State> {
 
     state: State = {
         email: '',
-        password: '',
-        errorMessage: ''
+        password: ''
     }
 
     handleLogin = () => {
-        console.log('handleLogin')
+        this.props.loginRequest(this.state.email, this.state.password, this.props.navigation.navigate);
     }
     render() {
         return (
             <View style={styles.container}>
                 <Text>Login</Text>
-                {this.state.errorMessage &&
+                {this.props.error &&
                     <Text style={{ color: 'red' }}>
-                        {this.state.errorMessage}
+                        {this.props.error}
                     </Text>}
                 <TextInput
                     style={styles.textInput}
@@ -57,6 +60,19 @@ class Login extends React.Component<Props, State> {
         )
     }
 }
+
+const mapStateToProps = (state: AppReducerState) => ({
+    error: state.authReducer.error
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+    loginRequest: actions.loginRequest
+}, dispatch);
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -71,15 +87,3 @@ const styles = StyleSheet.create({
         marginTop: 8
     }
 })
-
-const mapStateToProps = (state: State) => ({
-
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    handleClick: () => dispatch(incrementCounterAction())
-});
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);

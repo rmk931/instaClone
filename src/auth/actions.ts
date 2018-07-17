@@ -2,8 +2,13 @@ import { ActionCreator } from 'redux';
 
 import * as types from './actionTypes';
 
-export const signupRequest: ActionCreator<types.SignupRequest> = () => ({
-    type: '@@auth/SIGNUP_REQUEST'
+export const signupRequest: ActionCreator<types.SignupRequest> = (email: string, password: string, redirectTo: Function) => ({
+    type: '@@auth/SIGNUP_REQUEST',
+    payload: {
+        email,
+        password,
+        redirectTo,
+    }
 })
 
 export const signupSuccess: ActionCreator<types.SignupSuccess> = () => ({
@@ -17,8 +22,13 @@ export const signupError: ActionCreator<types.SignupError> = (error: string) => 
     }
 })
 
-export const loginRequest: ActionCreator<types.LoginRequest> = () => ({
-    type: '@@auth/LOGIN_REQUEST'
+export const loginRequest: ActionCreator<types.LoginRequest> = (email: string, password: string, redirectTo: Function) => ({
+    type: '@@auth/LOGIN_REQUEST',
+    payload: {
+        email,
+        password,
+        redirectTo,
+    }
 })
 
 export const loginSuccess: ActionCreator<types.LoginSuccess> = () => ({

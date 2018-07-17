@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducer from './src/reducer';
 
-//const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 initialState = {};
 

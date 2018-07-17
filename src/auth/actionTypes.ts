@@ -1,7 +1,16 @@
 import { Action } from 'redux';
 
+export const SIGNUP_REQUEST = '@@auth/SIGNUP_REQUEST'
+export const LOGIN_REQUEST = '@@auth/LOGIN_REQUEST'
+export const LOGOUT = '@@auth/LOGOUT'
+
 export interface SignupRequest extends Action {
     type: '@@auth/SIGNUP_REQUEST';
+    payload: {
+        email: string;
+        password: string;
+        redirectTo: Function;
+    }
 }
 
 export interface SignupSuccess extends Action {
@@ -17,6 +26,11 @@ export interface SignupError extends Action {
 
 export interface LoginRequest extends Action {
     type: '@@auth/LOGIN_REQUEST';
+    payload: {
+        email: string;
+        password: string;
+        redirectTo: Function;
+    }
 }
 
 export interface LoginSuccess extends Action {

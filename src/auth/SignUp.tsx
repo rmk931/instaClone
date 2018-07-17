@@ -1,37 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
 import { Navigation } from './types';
+import { AppReducerState } from '../reducer';
+import * as actions from './actions';
 
 interface Props {
-    navigation: Navigation
+    navigation: Navigation;
+    error?: string;
+    signupRequest: (email: string, password: string, redirectTo: Function) => any;
 }
 
 interface State {
-    readonly email: string,
-    readonly password: string, 
-    readonly errorMessage: string, 
+    readonly email: string;
+    readonly password: string; 
 }
 
-export default class SignUp extends React.Component<Props, State> {
+class SignUp extends React.Component<Props, State> {
 
     state: State = { 
         email: '', 
         password: '', 
-        errorMessage: '' 
     }
 
     handleSignUp = () => {
-        console.log('handleSignUp')
+       this.props.signupRequest(this.state.email, this.state.password, this.props.navigation.navigate);
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <Text>Sign Up</Text>
-                {this.state.errorMessage &&
+                {this.props.error &&
                     <Text style={{ color: 'red' }}>
-                        {this.state.errorMessage}
+                        {this.props.error}
                     </Text>}
                 <TextInput
                     placeholder="Email"
@@ -57,6 +61,18 @@ export default class SignUp extends React.Component<Props, State> {
         )
     }
 }
+
+const mapStateToProps = (state: AppReducerState) => ({
+    error: state.authReducer.error
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+    signupRequest: actions.signupRequest
+}, dispatch)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
