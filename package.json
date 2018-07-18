@@ -23,7 +23,9 @@
     "ios": "react-native run-ios",
     "rename": "node ./bin/rename.js",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "rndebugger-open"
+    
   },
   "jest": {
     "preset": "react-native"

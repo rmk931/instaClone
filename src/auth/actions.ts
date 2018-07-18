@@ -1,9 +1,10 @@
 import { ActionCreator } from 'redux';
 
+import * as interfaces from './actionInterfaces';
 import * as types from './actionTypes';
 
-export const signupRequest: ActionCreator<types.SignupRequest> = (email: string, password: string, redirectTo: Function) => ({
-    type: '@@auth/SIGNUP_REQUEST',
+export const signupRequest: ActionCreator<interfaces.SignupRequest> = (email: string, password: string, redirectTo: Function) => ({
+    type: types.SIGNUP_REQUEST,
     payload: {
         email,
         password,
@@ -11,19 +12,19 @@ export const signupRequest: ActionCreator<types.SignupRequest> = (email: string,
     }
 })
 
-export const signupSuccess: ActionCreator<types.SignupSuccess> = () => ({
-    type: '@@auth/SIGNUP_SUCCESS'
+export const signupSuccess: ActionCreator<interfaces.SignupSuccess> = () => ({
+    type: types.SIGNUP_SUCCESS,
 })
 
-export const signupError: ActionCreator<types.SignupError> = (error: string) => ({
-    type: '@@auth/SIGNUP_ERROR',
+export const signupError: ActionCreator<interfaces.SignupError> = (error: string) => ({
+    type: types.SIGNUP_ERROR,
     payload: {
         error
     }
 })
 
-export const loginRequest: ActionCreator<types.LoginRequest> = (email: string, password: string, redirectTo: Function) => ({
-    type: '@@auth/LOGIN_REQUEST',
+export const loginRequest: ActionCreator<interfaces.LoginRequest> = (email: string, password: string, redirectTo: Function) => ({
+    type: types.LOGIN_REQUEST,
     payload: {
         email,
         password,
@@ -31,17 +32,31 @@ export const loginRequest: ActionCreator<types.LoginRequest> = (email: string, p
     }
 })
 
-export const loginSuccess: ActionCreator<types.LoginSuccess> = () => ({
-    type: '@@auth/LOGIN_SUCCESS'
+export const loginSuccess: ActionCreator<interfaces.LoginSuccess> = () => ({
+    type: types.LOGIN_SUCCESS
 })
 
-export const loginError: ActionCreator<types.LoginError> = (error: string) => ({
-    type: '@@auth/LOGIN_ERROR',
+export const loginError: ActionCreator<interfaces.LoginError> = (error: string) => ({
+    type: types.LOGIN_ERROR,
     payload: {
         error
     }
 })
 
-export const logout: ActionCreator<types.Loggout> = () => ({
-    type: '@@auth/LOGOUT'
+export const logout: ActionCreator<interfaces.Loggout> = () => ({
+    type: types.LOGOUT
+});
+
+export const isAuthRequest: ActionCreator<interfaces.IsAuthRequest> = (redirectTo: Function) => ({
+    type: types.IS_AUTH_REQUEST,
+    payload: {
+        redirectTo
+    }
+});
+
+export const isAuthResponse: ActionCreator<interfaces.IsAuthResponse> = (isAuth: boolean) => ({
+    type: types.IS_AUTH_RESPONSE,
+    payload: {
+        isAuth
+    }
 });

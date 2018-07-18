@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { StyleSheet, Text, TextInput, View, Button, AppState } from 'react-native'
 
-import * as actions from './actions';
-import { Navigation } from './types';
-import { AppReducerState } from '../reducer';
+import { Navigation } from '../types';
+import { AppReducerState } from '../../reducer';
+import * as actions from '../actions';
 
 interface Props {
     navigation: Navigation;
@@ -32,7 +32,7 @@ class Login extends React.Component<Props, State> {
         return (
             <View style={styles.container}>
                 <Text>Login</Text>
-                {this.props.error &&
+                {this.props.error !== '' &&
                     <Text style={{ color: 'red' }}>
                         {this.props.error}
                     </Text>}

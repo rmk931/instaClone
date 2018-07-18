@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
-import { Navigation } from './types';
-import { AppReducerState } from '../reducer';
-import * as actions from './actions';
+import { Navigation } from '../types';
+import { AppReducerState } from '../../reducer';
+import * as actions from '../actions';
 
 interface Props {
     navigation: Navigation;
-    error?: string;
+    error: string;
     signupRequest: (email: string, password: string, redirectTo: Function) => any;
 }
 
@@ -33,7 +33,7 @@ class SignUp extends React.Component<Props, State> {
         return (
             <View style={styles.container}>
                 <Text>Sign Up</Text>
-                {this.props.error &&
+                {this.props.error !== '' &&
                     <Text style={{ color: 'red' }}>
                         {this.props.error}
                     </Text>}

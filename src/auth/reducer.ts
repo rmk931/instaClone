@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 
+import { AuthActions } from './actionInterfaces';
 import * as types from './actionTypes';
 
 export interface AuthReducerState {
@@ -15,23 +16,29 @@ export const initialState: AuthReducerState = {
 };
 
 export const authReducer: Reducer<AuthReducerState> = (state: AuthReducerState = initialState, action) => {
-    switch ((action as types.AuthActions).type) {
-        case '@@auth/LOGIN_SUCCESS': 
-        case '@@auth/SIGNUP_SUCCESS':
+    switch ((action as AuthActions).type) {
+        case types.LOGIN_SUCCESS: 
+        case types.SIGNUP_SUCCESS:
             return {
                 ...state,
-                isAuth: true
+                isAuth: true,
+                error: ''
             };
-        case '@@auth/LOGIN_ERROR':
-        case '@@auth/SIGNUP_ERROR':
+        case types.LOGIN_ERROR:
+        case types.SIGNUP_ERROR:
             return {
                 ...state,
                 error: action.payload.error
             }
-        case '@@auth/LOGOUT': 
+        case types.LOGOUT: 
             return {
                 ...state,
                 isAuth: false
+            }
+        case types.IS_AUTH_RESPONSE:
+            return {
+                ...state,
+                isAuth: action.payload.isAuth
             }
         default: 
             return state;
