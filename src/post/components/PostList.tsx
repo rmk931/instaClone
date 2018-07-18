@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 
-import { AppReducerState } from '../reducer';
-import { logoutAction } from '../auth';
-import { Navigation } from '../types';
+import { AppReducerState } from '../../reducer';
+import { logoutAction } from '../../auth';
+import { Navigation } from '../../types';
 
 
 interface Props {

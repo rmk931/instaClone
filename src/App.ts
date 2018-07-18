@@ -5,7 +5,7 @@ import { createSwitchNavigator } from 'react-navigation'
 import Loading from './auth/components/Loading';
 import SignUp from './auth/components/SignUp'
 import Login from './auth/components/Login'
-import PostList from './post/PostList'
+import PostList from './post/components/PostList'
 
 const App = createSwitchNavigator(
   {
