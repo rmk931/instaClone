@@ -42,6 +42,9 @@ export interface LoginError extends Action {
 
 export interface Loggout extends Action {
     type: '@@auth/LOGOUT';
+    payload: {
+        redirectTo: Function;
+    }
 }
 
 export interface IsAuthRequest extends Action {

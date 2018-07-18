@@ -43,8 +43,11 @@ export const loginError: ActionCreator<interfaces.LoginError> = (error: string) 
     }
 })
 
-export const logout: ActionCreator<interfaces.Loggout> = () => ({
-    type: types.LOGOUT
+export const logout: ActionCreator<interfaces.Loggout> = (redirectTo) => ({
+    type: types.LOGOUT,
+    payload: {
+        redirectTo
+    }
 });
 
 export const isAuthRequest: ActionCreator<interfaces.IsAuthRequest> = (redirectTo: Function) => ({

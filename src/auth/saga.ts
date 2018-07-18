@@ -37,11 +37,9 @@ function* signupSaga(action: interfaces.SignupRequest) {
 }
 
 function* logoutSaga(action: interfaces.Loggout) {
-    try {
-
-    } catch(err) {
-        yield put(actions.signupError('SignUp error'));
-    }
+    yield firebase.auth().signOut().then(() => {
+        action.payload.redirectTo('Loading');
+    });
 }
 
 function* isAuthSaga(action: interfaces.IsAuthRequest) {

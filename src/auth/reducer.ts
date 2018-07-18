@@ -2,21 +2,32 @@ import { Reducer } from 'redux';
 
 import { AuthActions } from './actionInterfaces';
 import * as types from './actionTypes';
+import { User } from '../types';
 
 export interface AuthReducerState {
     isAuth: boolean;
-    user: object;
+    user: User;
     error: string;
 };
 
 export const initialState: AuthReducerState = {
     isAuth: false,
-    user: {},
+    user: {
+        email: ''
+    },
     error: ''
 };
 
 export const authReducer: Reducer<AuthReducerState> = (state: AuthReducerState = initialState, action) => {
     switch ((action as AuthActions).type) {
+        case types.LOGIN_REQUEST:
+        case types.SIGNUP_REQUEST:
+            return {
+                ...state,
+                user: {
+                    email: action.payload.email
+                }
+            };
         case types.LOGIN_SUCCESS: 
         case types.SIGNUP_SUCCESS:
             return {
@@ -28,6 +39,9 @@ export const authReducer: Reducer<AuthReducerState> = (state: AuthReducerState =
         case types.SIGNUP_ERROR:
             return {
                 ...state,
+                user: {
+                    email: ''
+                },
                 error: action.payload.error
             }
         case types.LOGOUT: 

@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 import { isAuthRequest } from '../actions'
-import { Navigation } from '../types';
+import { Navigation } from '../../types';
 
 interface Props {
     navigation: Navigation;

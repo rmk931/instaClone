@@ -1,31 +1,48 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+
+import { AppReducerState } from '../reducer';
+import { logoutAction } from '../auth';
+import { Navigation } from '../types';
+
 
 interface Props {
-
+    navigation: Navigation;
+    email: string;
+    logout: (redirectTo: Function) => any;
 }
 
-interface State {
-    email: string
-}
+class PostList extends React.Component<Props> {
 
-export default class PostList extends React.Component<Props, State> {
-
-    state: State = {
-        email: ''
+    logout = () => {
+        this.props.logout(this.props.navigation.navigate);
     }
 
     render() {
-        const { email } = this.state
+        const { email } = this.props
         return (
             <View style={styles.container}>
                 <Text>
                     Hi {email !== '' && email}!
                 </Text>
+                <Button title="Logout" onPress={this.logout}/>
             </View>
         )
     }
 }
+
+const mapStateToProps = (state: AppReducerState) => ({
+    email: state.authReducer.user.email
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+    logout: logoutAction
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { StyleSheet, Text, TextInput, View, Button, AppState } from 'react-native'
 
-import { Navigation } from '../types';
+import { Navigation } from '../../types';
 import { AppReducerState } from '../../reducer';
 import * as actions from '../actions';
 
